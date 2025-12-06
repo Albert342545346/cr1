@@ -1,4 +1,4 @@
-/* === Preflight и переменные === */
+/* === 0. Preflight и каркас (Практ. №15) === */
 :root {
   color-scheme: light dark;
   --space-xs: 0.25rem;
@@ -20,22 +20,32 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   font: 16px/1.6 system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-/* === Skip-link и фокус === */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1;
+}
+
+/* === 1. Skip-link и фокус === */
 .skip-link {
   position: absolute;
-  left: var(--space-md);
-  top: -100%;
+  inset-inline-start: var(--space-md);
+  inset-block-start: -100%;
   z-index: 10000;
   padding: var(--space-sm) var(--space-md);
   background: #111;
@@ -45,14 +55,14 @@ body {
 }
 .skip-link:focus,
 .skip-link:focus-visible {
-  top: var(--space-md);
+  inset-block-start: var(--space-md);
 }
 :focus-visible {
   outline: var(--focus-outline);
   outline-offset: 2px;
 }
 
-/* === Шапка === */
+/* === 2. Шапка (синий) === */
 .page-header {
   background-color: var(--header-bg);
   color: white;
@@ -73,7 +83,7 @@ body {
   font-size: 0.875rem;
 }
 
-/* === Навигация === */
+/* === 3. Навигация (чёрная) === */
 .main-nav {
   background-color: var(--nav-bg);
   padding-block: 0.75rem;
@@ -106,15 +116,14 @@ body {
   font-weight: bold;
 }
 
-/* === Контакты === */
-main { flex: 1; }
+/* === 4. КОНТАКТЫ — ЦЕНТРИРОВАНИЕ ФОРМЫ === */
 .contact-section {
   max-width: 600px;
   margin: 3rem auto;
   padding: 0 var(--space-md);
 }
 
-/* === Форма === */
+/* === 5. Форма === */
 .form-group {
   margin-bottom: var(--space-lg);
 }
@@ -154,7 +163,7 @@ button[type="submit"]:focus {
   background-color: #1d4ed8;
 }
 
-/* === Футер === */
+/* === 6. Футер === */
 .page-footer {
   padding: var(--space-lg) 2rem;
   padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom));
@@ -162,7 +171,7 @@ button[type="submit"]:focus {
   background: var(--card-bg);
 }
 
-/* === Helper-классы === */
+/* === 7. Helper === */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -175,18 +184,9 @@ button[type="submit"]:focus {
   border: 0;
 }
 
-/* === Поддержка устройств с сенсорным экраном === */
 @media (pointer: coarse) {
   a, button, input, textarea {
     min-height: 44px;
     padding-block: max(0.5rem, calc((44px - 1em) / 2));
-  }
-}
-
-/* === Поддержка снижения движения === */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
   }
 }

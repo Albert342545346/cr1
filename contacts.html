@@ -7,10 +7,8 @@
   <link rel="stylesheet" href="contacts.css">
 </head>
 <body>
-  <!-- Skip-link для клавиатурной навигации -->
   <a href="#main" class="skip-link">Перейти к основному содержимому</a>
 
-  <!-- Шапка (синий фон) -->
   <header class="page-header" role="banner">
     <div class="header-content">
       <h1>Моё портфолио</h1>
@@ -21,7 +19,6 @@
     </div>
   </header>
 
-  <!-- Навигация (чёрный фон) -->
   <nav class="main-nav" aria-label="Основная навигация">
     <ul>
       <li><a href="index.html">Главная</a></li>
@@ -31,7 +28,6 @@
     </ul>
   </nav>
 
-  <!-- Основное содержимое -->
   <main id="main">
     <section class="contact-section" aria-labelledby="contact-title">
       <h2 id="contact-title">Контакты</h2>
@@ -99,19 +95,16 @@
     </section>
   </main>
 
-  <!-- Футер -->
   <footer class="page-footer" role="contentinfo">
     <p>© 2025. Все права защищены.</p>
   </footer>
 
-  <!-- Простая валидация для демонстрации ARIA -->
   <script>
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
       const name = document.getElementById('full-name');
       const email = document.getElementById('email');
 
-      // Сброс состояний
       name.setAttribute('aria-invalid', 'false');
       email.setAttribute('aria-invalid', 'false');
       document.getElementById('name-error').classList.add('visually-hidden');
@@ -119,14 +112,12 @@
 
       let isValid = true;
 
-      // Проверка имени
       if (!name.value.trim()) {
         name.setAttribute('aria-invalid', 'true');
         document.getElementById('name-error').classList.remove('visually-hidden');
         isValid = false;
       }
 
-      // Проверка email
       if (!email.value.trim() || !email.value.includes('@')) {
         email.setAttribute('aria-invalid', 'true');
         document.getElementById('email-error').classList.remove('visually-hidden');
