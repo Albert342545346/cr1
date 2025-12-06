@@ -65,7 +65,7 @@ a, button, input, textarea {
 
 /* === Безопасные зоны и touch === */
 @media (pointer: coarse) {
-  a, button {
+  a, button, .main-nav a {
     min-height: 44px;
     padding-block: max(var(--space-sm), calc((44px - 1em) / 2));
     padding-inline: var(--space-md);
@@ -137,7 +137,7 @@ a, button, input, textarea {
   font-size: clamp(1.25rem, 1rem + 1.2vw, 1.8rem);
   margin-bottom: var(--space-lg);
 }
-.hero__avatar {
+.hero__photo {
   inline-size: 200px;
   block-size: auto;
   border-radius: 50%;
@@ -182,7 +182,8 @@ a, button, input, textarea {
   .project-card { transition: none; }
 }
 .project-card:hover { transform: translateY(-4px); }
-.project-card__title, .project-card__desc {
+.project-card__title,
+.project-card__desc {
   overflow-wrap: anywhere;
   margin: 0 0 0.5rem 0;
 }
@@ -204,7 +205,7 @@ a, button, input, textarea {
 
 /* === Поддержка предпочтений === */
 @media (prefers-contrast: more) {
-  .main-nav a, .project-card, .hero__avatar {
+  .main-nav a, .project-card, .hero__photo {
     box-shadow: inset 0 0 0 2px currentColor;
   }
 }
