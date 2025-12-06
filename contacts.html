@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Контакты — Портфолио</title>
-  <link rel="stylesheet" href="contacts.css">
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-  <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+  <!-- Skip-link -->
+  <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
 
+  <!-- Синий заголовок -->
   <header class="page-header" role="banner">
     <div class="header-content">
       <h1>Моё портфолио</h1>
@@ -19,6 +21,7 @@
     </div>
   </header>
 
+  <!-- Чёрная навигация -->
   <nav class="main-nav" aria-label="Основная навигация">
     <ul>
       <li><a href="index.html">Главная</a></li>
@@ -28,8 +31,25 @@
     </ul>
   </nav>
 
-  <main id="main">
-    <section class="contact-section" aria-labelledby="contact-title">
+  <main id="main-content">
+    <!-- Герой-секция (опционально) -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title" class="hero__greeting">Привет! Я начинающий разработчик</h2>
+      <figure class="hero__image">
+        <picture>
+          <source type="image/avif" srcset="images/11.avif 150w, images/11.avif 200w, images/11.avif 300w"
+            sizes="200px" />
+          <source type="image/webp" srcset="images/11.webp 150w, images/11.webp 200w, images/11.webp 300w"
+            sizes="200px" />
+          <img src="images/11.jpg" srcset="images/11.jpg 150w, images/11.jpg 200w, images/11.jpg 300w"
+            sizes="200px" width="200" height="200" alt="Разработчик спит за ноутбуком" class="hero__photo"
+            fetchpriority="high" loading="eager" />
+        </picture>
+      </figure>
+    </section>
+
+    <!-- Форма контактов -->
+    <section id="contact-form-section" class="contact-section" aria-labelledby="contact-title">
       <h2 id="contact-title">Контакты</h2>
 
       <form id="contact-form" novalidate>
