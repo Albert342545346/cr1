@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Портфолио студента</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Skip-link -->
+  <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
+
+  <!-- Синий заголовок -->
+  <header class="page-header" role="banner">
+    <div class="header-content">
+      <h1>Мой Портфолио</h1>
+      <p class="header-subtitle">Студент разработчик</p>
+    </div>
+    <div class="header-badge">
+      <span>ЭФБО-09-24</span>
+    </div>
+  </header>
+
+  <!-- Чёрная навигация -->
+  <nav class="main-nav" aria-label="Основная навигация">
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="practice-03.html">№3 Практика</a></li>
+      <li><a href="practice-12.html">№12 Практика</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content" class="main-content">
+    <!-- Герой с аватаркой -->
+    <section class="hero">
+      <figure class="hero__image">
+        <picture>
+          <source type="image/avif" srcset="images/avatar-150.avif 150w, images/avatar-200.avif 200w, images/avatar-300.avif 300w" sizes="200px" />
+          <source type="image/webp" srcset="images/avatar-150.webp 150w, images/avatar-200.webp 200w, images/avatar-300.webp 300w" sizes="200px" />
+          <img
+            src="images/avatar-200.jpg"
+            srcset="images/avatar-150.jpg 150w, images/avatar-200.jpg 200w, images/avatar-300.jpg 300w"
+            sizes="200px"
+            width="200"
+            height="200"
+            alt="Фотография студента"
+            class="hero__avatar"
+            fetchpriority="high"
+            loading="eager"
+          />
+        </picture>
+      </figure>
+      <h2 class="hero__greeting">Привет! Я начинающий разработчик</h2>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects" class="projects-section" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="section-title">Мои проекты</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3 class="project-card__title">Веб-магазин</h3>
+          <p class="project-card__desc">Адаптивный интернет-магазин с корзиной и формой заказа.</p>
+        </article>
+        <article class="project-card">
+          <h3 class="project-card__title">Блог</h3>
+          <p class="project-card__desc">Современный блог с поддержкой тёмной темы.</p>
+        </article>
+        <article class="project-card">
+          <h3 class="project-card__title">Калькулятор</h3>
+          <p class="project-card__desc">Простой, но функциональный калькулятор на JavaScript.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer" role="contentinfo">
+    <p>© 2025. Все права защищены.</p>
+  </footer>
+</body>
+</html>
