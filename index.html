@@ -1,68 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Портфолио студента</title>
-  <link rel="stylesheet" href="index.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карточка товара - Практика 1</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <!-- Skip-link -->
-  <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
 
-  <!-- Синий заголовок -->
-  <header class="page-header" role="banner">
-    <div class="header-content">
-      <h1>Моё портфолио</h1>
-      <p class="header-subtitle">Студент разработчик</p>
+    <div class="product-card">
+        <div class="product-card__image-wrapper">
+            <img src="https://via.placeholder.com/300x200" alt="Товар" class="product-card__image">
+        </div>
+        <div class="product-card__content">
+            <h2 class="product-card__title">Смартфон SuperPhone X</h2>
+            <p class="product-card__description">
+                Мощный процессор, отличная камера и долгая работа от батареи. 
+                Идеальный выбор для повседневных задач.
+            </p>
+            <button class="product-card__btn">Купить за 9990 ₽</button>
+        </div>
     </div>
-    <div class="header-badge">
-      <span>ЭФБО-09-24</span>
-    </div>
-  </header>
 
-  <!-- Чёрная навигация -->
-  <nav class="main-nav" aria-label="Основная навигация">
-    <ul>
-      <li><a href="index.html" aria-current="page">Главная</a></li>
-      <li><a href="projects.html">Проекты</a></li>
-      <li><a href="diary.html">Дневник</a></li>
-      <li><a href="contacts.html">Контакты</a></li>
-    </ul>
-  </nav>
-
-  <main id="main-content">
-    <!-- Герой с вашей фоткой -->
-    <section class="hero" aria-labelledby="hero-title">
-      <h2 id="hero-title" class="hero__greeting">Привет! Я начинающий разработчик</h2>
-      <figure class="hero__image">
-        <!-- ВАША ФОТОКА 11.jpg — БЕЗ АВИФ/ВЕБП, ПРОСТО JPG -->
-        <img src="11.jpg" alt="Разработчик спит за ноутбуком" width="200" height="200" class="hero__photo" fetchpriority="high" loading="eager" />
-      </figure>
-    </section>
-
-    <!-- Проекты -->
-    <section id="projects" class="projects-section" aria-labelledby="projects-title">
-      <h2 id="projects-title" class="section-title">Мои проекты</h2>
-      <div class="projects-grid" data-container="projects">
-        <article class="project-card">
-          <h3 class="project-card__title">Веб-магазин</h3>
-          <p class="project-card__desc">Адаптивный интернет-магазин с корзиной и формой заказа.</p>
-        </article>
-        <article class="project-card">
-          <h3 class="project-card__title">Блог</h3>
-          <p class="project-card__desc">Современный блог с поддержкой тёмной темы.</p>
-        </article>
-        <article class="project-card">
-          <h3 class="project-card__title">Калькулятор</h3>
-          <p class="project-card__desc">Простой, но функциональный калькулятор на JavaScript.</p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer class="page-footer" role="contentinfo">
-    <p>© 2025. Все права защищены.</p>
-  </footer>
 </body>
 </html>
