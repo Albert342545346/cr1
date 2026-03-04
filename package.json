@@ -1,0 +1,14 @@
+{
+  "name": "cr1",
+  "version": "1.0.0",
+  "description": "Frontend and Backend Development Practices",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
