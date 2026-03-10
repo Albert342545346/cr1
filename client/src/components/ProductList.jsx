@@ -2,18 +2,18 @@ import React from 'react';
 import ProductItem from './ProductItem';
 
 export default function ProductList({ products, onEdit, onDelete }) {
-  if (!products.length) {
-    return <div className="empty">Товаров пока нет</div>;
+  if (!products || products.length === 0) {
+    return <div className="empty">Товары не найдены</div>;
   }
 
   return (
-    <div className="list">
+    <div className="product-list">
       {products.map((product) => (
         <ProductItem
           key={product.id}
           product={product}
-          onEdit={onEdit}
-          onDelete={onDelete}
+          onEdit={() => onEdit(product)}
+          onDelete={() => onDelete(product.id)}
         />
       ))}
     </div>

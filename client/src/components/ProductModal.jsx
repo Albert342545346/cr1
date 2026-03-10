@@ -1,150 +1,158 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import '../styles/ShopPage.scss';
 
 export default function ProductModal({ open, mode, initialProduct, onClose, onSubmit }) {
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [rating, setRating] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    category: '',
+    description: '',
+    price: '',
+    quantity: '',
+    rating: ''
+  });
 
   useEffect(() => {
-    if (!open) return;
-    setName(initialProduct?.name || '');
-    setCategory(initialProduct?.category || '');
-    setDescription(initialProduct?.description || '');
-    setPrice(initialProduct?.price != null ? String(initialProduct.price) : '');
-    setQuantity(initialProduct?.quantity != null ? String(initialProduct.quantity) : '');
-    setRating(initialProduct?.rating != null ? String(initialProduct.rating) : '');
-  }, [open, initialProduct]);
+    if (open && mode === 'edit' && initialProduct) {
+      setFormData({
+        id: initialProduct.id,
+        name: initialProduct.name || '',
+        category: initialProduct.category || '',
+        description: initialProduct.description || '',
+        price: initialProduct.price || '',
+        quantity: initialProduct.quantity || '',
+        rating: initialProduct.rating || ''
+      });
+    } else if (open && mode === 'create') {
+      setFormData({
+        name: '',
+        category: '',
+        description: '',
+        price: '',
+        quantity: '',
+        rating: ''
+      });
+    }
+  }, [open, mode, initialProduct]);
 
-  if (!open) return null;
-
-  const title = mode === "edit" ? "Редактирование товара" : "Добавление товара";
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const trimmedName = name.trim();
-    const trimmedCategory = category.trim();
-    const parsedPrice = Number(price);
-    const parsedQuantity = Number(quantity) || 0;
-    const parsedRating = Number(rating) || 0;
-
-    if (!trimmedName) {
-      alert("Введите название товара");
-      return;
-    }
-    if (!trimmedCategory) {
-      alert("Введите категорию");
-      return;
-    }
-    if (!Number.isFinite(parsedPrice) || parsedPrice < 0) {
-      alert("Введите корректную цену");
+    
+    // Валидация
+    if (!formData.name || !formData.category || !formData.price) {
+      alert('Заполните обязательные поля: Название, Категория, Цена');
       return;
     }
 
-    onSubmit({
-      id: initialProduct?.id,
-      name: trimmedName,
-      category: trimmedCategory,
-      description: description.trim(),
-      price: parsedPrice,
-      quantity: parsedQuantity,
-      rating: parsedRating
-    });
+    const payload = {
+      ...formData,
+      price: parseFloat(formData.price),
+      quantity: parseInt(formData.quantity) || 0,
+      rating: parseFloat(formData.rating) || 0
+    };
+
+    onSubmit(payload);
   };
 
+  if (!open) return null;
+
   return (
-    <div className="backdrop" onMouseDown={onClose}>
-      <div className="modal" onMouseDown={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal__header">
-          <div className="modal__title">{title}</div>
-          <button className="iconBtn" onClick={onClose} aria-label="Закрыть">
-            ✕
-          </button>
+          <h2>{mode === 'create' ? 'Добавление товара' : 'Редактирование товара'}</h2>
+          <button className="modal__close" onClick={onClose}>×</button>
         </div>
-
-        <form className="form" onSubmit={handleSubmit}>
-          <label className="label">
-            Название *
+        
+        <form onSubmit={handleSubmit} className="modal__form">
+          <div className="form-group">
+            <label>Название *</label>
             <input
-              className="input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Например, Смартфон iPhone"
-              autoFocus
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Введите название товара"
+              required
             />
-          </label>
+          </div>
 
-          <label className="label">
-            Категория *
+          <div className="form-group">
+            <label>Категория *</label>
             <input
-              className="input"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              placeholder="Например, Электроника"
+              type="text"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              placeholder="Например: Electronics"
+              required
             />
-          </label>
+          </div>
 
-          <label className="label">
-            Описание
+          <div className="form-group">
+            <label>Описание</label>
             <textarea
-              className="input textarea"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
               placeholder="Описание товара"
               rows="3"
             />
-          </label>
+          </div>
 
-          <label className="label">
-            Цена (₽) *
+          <div className="form-group">
+            <label>Цена (₽) *</label>
             <input
-              className="input"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="Например, 99990"
-              inputMode="numeric"
               type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              placeholder="0"
+              min="0"
+              step="0.01"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Количество на складе</label>
+            <input
+              type="number"
+              name="quantity"
+              value={formData.quantity}
+              onChange={handleChange}
+              placeholder="0"
               min="0"
             />
-          </label>
+          </div>
 
-          <label className="label">
-            Количество на складе
+          <div className="form-group">
+            <label>Рейтинг (0-5)</label>
             <input
-              className="input"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-              placeholder="Например, 10"
-              inputMode="numeric"
               type="number"
-              min="0"
-            />
-          </label>
-
-          <label className="label">
-            Рейтинг (0-5)
-            <input
-              className="input"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              placeholder="Например, 4.5"
-              inputMode="decimal"
-              type="number"
+              name="rating"
+              value={formData.rating}
+              onChange={handleChange}
+              placeholder="0"
               min="0"
               max="5"
               step="0.1"
             />
-          </label>
+          </div>
 
-          <div className="modal__footer">
-            <button type="button" className="btn" onClick={onClose}>
+          <div className="modal__actions">
+            <button type="button" className="btn btn--secondary" onClick={onClose}>
               Отмена
             </button>
             <button type="submit" className="btn btn--primary">
-              {mode === "edit" ? "Сохранить" : "Добавить"}
+              {mode === 'create' ? 'Добавить' : 'Сохранить'}
             </button>
           </div>
         </form>
