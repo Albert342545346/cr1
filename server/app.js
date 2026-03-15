@@ -34,7 +34,7 @@ let products = [
 // === ГЛАВНАЯ СТРАНИЦА (должна быть ПЕРВОЙ) ===
 app.get('/', (req, res) => {
   res.json({ 
-    message: '🛒 Store API работает!',
+    message: 'Store API работает!',
     version: '1.0.0',
     endpoints: {
       products: '/api/products',
@@ -98,7 +98,7 @@ app.post('/api/products', (req, res) => {
   };
   
   products.push(newProduct);
-  console.log('✅ Создан товар:', newProduct);
+  console.log('Создан товар:', newProduct);
   res.status(201).json(newProduct);
 });
 
@@ -145,7 +145,7 @@ app.patch('/api/products/:id', (req, res) => {
   }
   
   product.updatedAt = new Date().toISOString();
-  console.log('✅ Обновлён товар:', product);
+  console.log('Обновлён товар:', product);
   res.json(product);
 });
 
@@ -157,7 +157,7 @@ app.delete('/api/products/:id', (req, res) => {
   }
   
   const deleted = products.splice(index, 1)[0];
-  console.log('✅ Удалён товар:', deleted);
+  console.log('Удалён товар:', deleted);
   res.status(204).send();
 });
 
@@ -168,17 +168,17 @@ app.use((req, res) => {
 
 // === Global Error Handler ===
 app.use((err, req, res, next) => {
-  console.error('❌ Ошибка:', err);
+  console.error('Ошибка:', err);
   res.status(500).json({ error: 'Внутренняя ошибка сервера' });
 });
 
 // Запуск сервера
 app.listen(PORT, () => {
   console.log('\n' + '='.repeat(60));
-  console.log('✅ СЕРВЕР ЗАПУЩЕН');
-  console.log('📍 Адрес: http://localhost:' + PORT);
-  console.log('🔌 API: http://localhost:' + PORT + '/api');
-  console.log('📦 Products: http://localhost:' + PORT + '/api/products');
+  console.log('СЕРВЕР ЗАПУЩЕН');
+  console.log('Адрес: http://localhost:' + PORT);
+  console.log('API: http://localhost:' + PORT + '/api');
+  console.log('Products: http://localhost:' + PORT + '/api/products');
   console.log('='.repeat(60) + '\n');
 });
 
